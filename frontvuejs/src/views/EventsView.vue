@@ -1,6 +1,6 @@
 <template>
   <v-row>
-    <v-col v-for="oneEvent in events()" :key="oneEvent.id" cols="4">
+    <v-col v-for="oneEvent in events()" :key="oneEvent.id" xs="12" md="6" lg="4" xl="3" class="d-flex flex-wrap align-self-strech justify-space-around">
       <event-card :item="oneEvent" />
     </v-col>
   </v-row>
