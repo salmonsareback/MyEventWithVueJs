@@ -1,9 +1,16 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import { createProxy, extractVuexModule } from "vuex-class-component";
+import { EventsStore } from './modules/EventsStore';
+
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+// Create store
+const store =  new Vuex.Store({
+  modules:{
+    ...extractVuexModule(EventsStore),
+  },
   state: {
   },
   getters: {
@@ -12,6 +19,13 @@ export default new Vuex.Store({
   },
   actions: {
   },
-  modules: {
-  }
+  // modules: {
+  // }
 })
+
+export default store;
+
+//Create proxy
+export const vuex = {
+  events: createProxy(store, EventsStore),
+};
