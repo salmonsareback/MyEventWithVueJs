@@ -6,7 +6,7 @@ Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
   {
-    path: '/',
+    path: '/home',
     name: 'home',
     component: HomeView
   },
@@ -19,12 +19,24 @@ const routes: Array<RouteConfig> = [
     component: () => import(/* webpackChunkName: "events" */ '../views/EventsView.vue')
   },
   {
+    path: '/search-events',
+    name: 'search-events',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "search-events" */ '../views/SearchEvents.vue')
+  },
+  {
     path: '/about',
     name: 'about',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+  },
+  {
+    path: '*',
+    redirect: '/home'
   }
 
 ]

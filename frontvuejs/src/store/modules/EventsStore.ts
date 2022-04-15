@@ -1,4 +1,4 @@
-import { getEvents } from "@/services/restCenter";
+import EventService from "@/services/EventService";
 import { OneEvent } from "@/types";
 import { createModule, mutation, action } from "vuex-class-component";
 
@@ -8,7 +8,7 @@ export class EventsStore extends VuexModule {
 
   @action
   public async GET_EVENTS(): Promise<void> {
-    this.items=await getEvents();
+    this.items=await EventService.getEvents();
   }
 
 }

@@ -39,16 +39,11 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { OneEvent } from "@/types";
-import {Validate, Validations} from 'vuelidate-property-decorators';
-import {required} from 'vuelidate/lib/validators';
 
 @Component
 export default class EventCard extends Vue {
   @Prop()
   item!: OneEvent;
-
-  @Validate({required})
-  firstName="";
 
   private cardColor(): String {
     let debug5 =

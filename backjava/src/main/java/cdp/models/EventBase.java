@@ -1,8 +1,12 @@
 package cdp.models;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @MappedSuperclass
 public class EventBase {
@@ -57,6 +61,12 @@ public class EventBase {
     public String getTitle() {
         return title;
     }
+
+    @CreatedDate
+    private Date createdDate;
+
+    @LastModifiedDate
+    private Date lastModifiedDate;
 
     public void setTitle(String title) {
         this.title = title;

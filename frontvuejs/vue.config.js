@@ -1,4 +1,6 @@
+// Replace default @vue config by custom including proxy
 const { defineConfig } = require('@vue/cli-service')
+
 module.exports = defineConfig({
   transpileDependencies: ["vuex-module-decorators",'vuetify'],
   // proxy all webpack dev-server requests starting with /api
@@ -8,7 +10,7 @@ module.exports = defineConfig({
     port: 8082,
     proxy: {
       "/api": {
-        target: "http://localhost:8089",
+        target: "http://localhost:8090",
         ws: true,
         changeOrigin: true,
       },
@@ -23,10 +25,11 @@ module.exports = defineConfig({
 
   pluginOptions: {
     i18n: {
-      locale: "fr",
-      fallbackLocale: "fr",
-      localeDir: "locales",
-      enableInSFC: true,
+      locale: undefined,
+      fallbackLocale: undefined,
+      localeDir: undefined,
+      enableInSFC: undefined,
+      enableBridge: undefined
     },
   },
 })

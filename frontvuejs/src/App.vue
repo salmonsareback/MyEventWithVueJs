@@ -14,14 +14,19 @@
       </div>
 
       <v-spacer></v-spacer>
+      <v-btn text :to="{ name: 'home' }">Home</v-btn>
+      <v-btn text :to="{ name: 'search-events' }">Find by</v-btn>
+      <v-btn text :to="{ name: 'events' }">Manage</v-btn>
 
+      <v-spacer></v-spacer>
       <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
+        v-for="lang in languages"
+        :key="lang.title"
+        @click="changeLocale(lang.language)"
+        color="transparent"
+        :depressed="!($i18n.locale == lang.language)"
       >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
+        <flag :iso="lang.flag" size="normal" />
       </v-btn>
     </v-app-bar>
 
@@ -44,13 +49,26 @@
 
 <script lang="ts">
 import Vue from "vue";
+import i18n from "@/plugins/i18n";
 
 export default Vue.extend({
   name: "App",
+  // private languages = [
+  // { local: "en", lang: "English", flag: "gb" },
+  // { local: "fr", lang: "Français", flag: "fr" },
+  // ];
 
   data: () => ({
-    //
+    languages: [
+      { flag: "fr", language: "fr", title: "Français" },
+      { flag: "gb", language: "en", title: "English" },
+    ],
   }),
+  methods: {
+    changeLocale(locale: string) {
+      i18n.locale = locale;
+    },
+  },
 });
 </script>
 
